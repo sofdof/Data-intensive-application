@@ -11,11 +11,14 @@
   - Assigns continuous ranges of keys to each partition
   - Facilitates efficient range queries by keeping keys in sorted order
   - Using date-based keys can lead to hot spots
+  - Partitions are typically rebalanced dynamically by splitting ranges when they become too large
 
 - **Hash Partitioning**
   - Uses a hash function to determine the partition for a given key
   - Distributes keys uniformly to prevent skew and hot spots
   - Cassandra uses consistent hashing to distribute keys
+  - Common to create a fixed number of partitions in advance, assigning several to each node and moving partitions when nodes are added or removed
+  - Dynamic partitioning can also be used
 
 ### Challenges of Partitioning
 
@@ -47,3 +50,13 @@
   - Partitions split or merge based on load
   - Adapts to changing data sizes and access patterns
   - HBase and RethinkDB dynamically adjust partition sizes
+
+### Query Routing Techniques
+
+- **Partition-Aware Load Balancing**
+  - Directs queries to the appropriate partition
+  - Ensures efficient query handling and load distribution
+
+- **Sophisticated Parallel Query Execution Engines**
+  - Optimize query execution across multiple partitions
+  - Enhance performance for complex queries involving multiple partitions
